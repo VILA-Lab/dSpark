@@ -1,0 +1,58 @@
+group: dspark_minerva_math
+task:
+  - &minerva
+    task: dspark_minerva_math_algebra
+    dataset_path: EleutherAI/hendrycks_math
+    dataset_name: algebra
+    process_docs: !function minerva_utils.process_docs
+    output_type: generate_until
+    training_split: train
+    test_split: test
+    doc_to_text: !function minerva_utils.doc_to_text
+    process_results: !function minerva_utils.process_results
+    doc_to_target: "{{answer if few_shot is undefined else solution}}"
+    generation_kwargs:
+      until:
+        - "Problem:"
+      do_sample: false
+      temperature: 0
+    metric_list:
+      - metric: exact_match
+        aggregation: mean
+        higher_is_better: true
+      - metric: math_verify
+        aggregation: mean
+        higher_is_better: true
+    num_fewshot: 4
+    fewshot_config:
+      sampler: first_n
+      samples: !function minerva_utils.list_fewshot_samples
+    metadata:
+      version: 2.0
+  - <<: *minerva
+    task: dspark_minerva_math_counting_and_prob
+    dataset_name: counting_and_probability
+  - <<: *minerva
+    task: dspark_minerva_math_geometry
+    dataset_name: geometry
+  - <<: *minerva
+    task: dspark_minerva_math_intermediate_algebra
+    dataset_name: intermediate_algebra
+  - <<: *minerva
+    task: dspark_minerva_math_num_theory
+    dataset_name: number_theory
+  - <<: *minerva
+    task: dspark_minerva_math_prealgebra
+    dataset_name: prealgebra
+  - <<: *minerva
+    task: dspark_minerva_math_precalc
+    dataset_name: precalculus
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+  - metric: math_verify
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

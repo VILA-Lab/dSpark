@@ -1,0 +1,36 @@
+model:
+  name: "Dream-org/Dream-v0-Instruct-7B"
+
+data:
+  path: "data/*.jsonl"             # output of data_prepare.py
+  gen_length: 256
+  block_length: 32
+  max_length: 512                  # prompt + response; longer samples are skipped
+  neg_ratio: 0.25                  # failed trajectories per correct response
+  pipelined_window: false          # loss on the current block only
+
+loss:
+  lambda_ent: 1.0                  # entropy sharpening on correctly predicted positions
+  beta: 1.0                        # KL to the base model on failed trajectories
+
+lora:
+  r: 256
+  lora_alpha: 256
+  lora_dropout: 0.0
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+training:
+  output_dir: "output_model/dspark_dream_lora"
+  num_train_epochs: 6
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-5
+  lr_scheduler_type: "constant"
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  optim: "adamw_torch"
+  bf16: true
+  logging_steps: 10
+  save_strategy: "epoch"
+  report_to: "none"
+  seed: 42
