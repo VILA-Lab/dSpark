@@ -1,4 +1,4 @@
-group: dspark_minerva_math
+group: minerva_math
 task:
   - &minerva
     task: dspark_minerva_math_algebra

@@ -1,7 +1,7 @@
 <div align="center">
 <h1>⚡ dSpark: Learning When to Commit for Fast Diffusion Language Models</h1>
   <div align="center">
-  <a href="#">
+  <a href="https://arxiv.org/abs/2610.35804">
     <img src="https://img.shields.io/badge/Paper-Arxiv-darkred.svg" alt="Paper">
   </a>
 </div>
@@ -15,7 +15,9 @@
 > Aidar Myrzakhan, Zhiqiang Shen
 > VILA Lab, MBZUAI
 
-**Note:** The dSpark model checkpoints and training data will be released soon.
+## 📣 News
+- `[2026/10/28]`: We release the code and the [arXiv paper](https://arxiv.org/abs/2610.35804) of dSpark.
+- The model checkpoints and training data will be released later.
 
 
 ## 💡 Introduction
@@ -188,7 +190,7 @@ Accuracy and throughput on GSM8K with LLaDA-8B-Instruct on an A100 GPU with batc
 | LLaDA | 78.82 | 1.00 | 15 |
 | Fast-dLLM | 75.51 | 2.91 | 94 |
 | D2F | 74.24 | 2.83 | 89 |
-| dParallel | 75.62 | 7.12 | 165 |
+| dParallel | 75.62 | 7.09 | 165 |
 | d3LLM | 74.21 | 9.05 | 220 |
 | **dSpark (ours)** | **78.94** | **10.12** | **249** |
 
@@ -203,7 +205,7 @@ If our research assists your work, please give us a star ⭐ or cite us using:
 @article{myrzakhan2026dspark,
   title={Learning When to Commit: Schedule Distillation for Fast Diffusion Language Models},
   author={Myrzakhan, Aidar and Shen, Zhiqiang},
-  journal={arXiv preprint},
+  journal={arXiv preprint arXiv:2610.35804},
   year={2026}
 }
 ```

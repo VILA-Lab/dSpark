@@ -1,4 +1,4 @@
-task: dspark_mbpp_instruct
+task: mbpp
 dataset_path: google-research-datasets/mbpp
 dataset_name: full
 unsafe_code: true

@@ -1,4 +1,4 @@
-task: dspark_gsm8k
+task: gsm8k
 dataset_path: openai/gsm8k
 dataset_name: main
 output_type: generate_until
